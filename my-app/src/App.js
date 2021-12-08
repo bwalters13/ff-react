@@ -104,18 +104,6 @@ class App extends React.Component {
             window.location.reload(true);
           }}>Refresh</button>
           <Boxscore scores={this.state.scores}/>
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
       </div>
     );
   }

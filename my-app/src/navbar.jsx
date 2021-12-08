@@ -1,10 +1,12 @@
 import React from 'react';
 import {  Link } from "react-router-dom";
 import "./Navbar.css"
+import living from './liv.jpg'
 
 function Navbar() {
   return (
-    <div class="navbar">
+    <div class="navbar">  
+      {/* <img src={living} alt="" /> */}
       <li>
         <Link to="/">Scoreboard</Link>
       </li>

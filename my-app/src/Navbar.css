@@ -10,6 +10,7 @@
     background-color: lightblue;
     width: 100%;
     text-align: center;
+    height: 10vh;
 }
 
 .navbar li {
@@ -21,7 +22,7 @@
 .navbar li a {
     text-decoration: none;
     color: rgb(29, 25, 231);
-    font-size: 18px;
+    font-size: x-large;
     padding: 8px 20px;
 }
 

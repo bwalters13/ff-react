@@ -52,8 +52,7 @@
     }
 }
 
-.lineup,
-th,
+.lineup th,
 td {
     text-align: left;
     border-bottom: solid black;
@@ -61,21 +60,18 @@ td {
 }
 
 .lineup tr {
-    height: 5vh;
+    height: 8vh;
 }
 
-.lineup,
-tr:nth-child(even) {
+.lineup tr nth-child(even) {
     background-color: darkgray;
 }
 
-.lineup,
-tr:nth-child(odd) {
+.lineup tr:nth-child(odd) {
     background-color: gray;
 }
 
-.lineup,
-td:last-child {
+.lineup td:last-child {
     border-right: none;
 }
 
@@ -106,17 +102,38 @@ caption {
 
 .score {
     flex: 1vw;
+    width: 10vw;
 }
 
 .total {
     display: flex;
     margin: auto;
-    width: 100%;
+    width: 50%;
 }
 
-.inner {
-    width: 100%;
-    text-align: center;
+.inner {}
+
+@media (max-width: 900px) {
+    .inner {
+        width: 100%;
+        text-align: center;
+        font-size: large;
+        text-shadow: black;
+    }
+    img {
+        width: auto;
+        height: 100%;
+        float: left;
+        border-radius: 20px;
+    }
+    .total {
+        width: 100%;
+    }
+}
+
+img {
+    height: 100%;
+    float: left;
 }
 
 table {
@@ -130,19 +147,36 @@ td {
     padding: 2vw;
 }
 
+.boxscore td:first-child {
+    padding-right: 30%;
+    width: 50vw;
+}
+
 .boxscore {
-    max-width: 40vw;
+    width: 90vw;
+    border-radius: 20px;
+    background-color: lightslategray;
+}
+
+.boxscore tr {
+    height: 10vh;
+}
+
+.boxscore td {
+    text-align: center;
 }
 
 .boxheader {
-    font-size: large;
-    margin: auto;
-    padding: auto;
+    font-size: smaller;
+    height: 1vh !important;
+    border-bottom: solid black;
+    text-align: center;
+    background-color: #282c34;
 }
 
 .teamName {
     text-align: left;
-    min-width: 25vw;
+    min-width: 50vw;
 }
 
 .row {

@@ -3,6 +3,8 @@ import React from 'react';
 import {teams} from '../App.js'
 import "../App.css"
 import Navbar from "../navbar"
+import right from '../righton.png';
+import left from '../lefton.png';
 
 const playoffTeams = [4,9,12,14]
 
@@ -117,17 +119,20 @@ class Lineups extends React.Component {
       }
 
       render () {
-          let lineup1, lineup2
+          let lineup1, lineup2, img
           if (this.state.isLoading) {
               return <h1>Loading...</h1>
           }
           if (this.state.index == 0) {
               lineup1 = this.state.lineup1
               lineup2 = this.state.lineup2
+              img = left
+            
           }
           else {
               lineup1 = this.state.lineup3
               lineup2 = this.state.lineup4
+              img = right
           }
           let matchup = []
           let fullMatchup = []
@@ -159,32 +164,55 @@ class Lineups extends React.Component {
           return (
             
             <div class="tables">
-                    <table class="lineup" onClick={this.handleClick}>
+                    <table class="lineup" onTouchStart={e=> this.touchY = e.nativeEvent.pageY}
+                    onTouchEnd={e => {
+                        if (this.touchX - e.nativeEvent.pageX > 20)
+                          this.handleClick()
+                      }}>
                         <div class="total">
 
                             <div class="score">
-                                <div class="inner">{teams[matchups[this.state.index][0]]}</div>
+                                <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
                                 <div class="inner">{score1.toFixed(2)}</div>
                             </div>
                             <div class="score">
-                                <div class="inner">{teams[matchups[this.state.index][1]]}</div>
+                                <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
                                 <div class="inner">{score2.toFixed(2)}</div>
                             </div>
+                            
                         </div>
+                        <div style={{width: "10%", margin: "auto" }}>
+                                <img src={img} alt="" style={{width: "100%", height: "auto", paddingRight: "4vw"}} />
+                            </div>
                         <tbody>
                           {matchup}
                         </tbody>
                     </table>
                     <table class="full" onClick={this.handleClick}>
-                    <caption><b>{teams[matchups[this.state.index][0]]}</b> vs. <b>{teams[matchups[this.state.index][1]]}</b></caption>
                     <div class="total">
-                        <div class="score">{score1}</div>
-                        <div class="score">{score2}</div>
-                    </div>
+
+                            <div class="score">
+                                <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
+                                <div class="inner">{score1.toFixed(2)}</div>
+                            </div>
+                            <div class="score">
+                                <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
+                                <div class="inner">{score2.toFixed(2)}</div>
+                            </div>
+                        </div>
+                
                         <tbody>
                             {fullMatchup}
                         </tbody>
                     </table>
+                    <Navbar
+                    onTouchStart={e=> this.touchY = e.nativeEvent.pageY}
+                    onTouchEnd={e => {
+                        if (this.touchY - e.nativeEvent.pageY > 20)
+                        alert("WORKS")
+                    }}
+                    style={{height: 300, backgroundColor: '#ccc'}}
+                    />
             </div>
           )
       }
