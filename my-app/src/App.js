@@ -8,6 +8,7 @@ import cat from "./cat.gif"
 
 
 
+
 const teams = {
    1: "Loading ....", 
    2: "Adrian Beaturson",
@@ -95,7 +96,12 @@ class App extends React.Component {
   render () {
     if (Object.keys(this.state.scores).length == 0) {
       console.log(this.state.scores)
-      return <img src={cat} alt="" style={{width: "100%"}}/>;
+      return (
+        <div className="App">
+        <Navbar/> 
+        <img src={cat} alt="" style={{width: "100%"}}/>
+        </div>
+      )
     }
     return (
       <div className="App">

@@ -190,7 +190,7 @@ class Lineups extends React.Component {
             <div class="tables">
                     <table class="lineup" onTouchStart={this.handleTouchStart} onTouchMove={this.handleTouchMove}>
                         <div class="total">
-                            <div style={{margin: "auto"}} onClick={this.handleClick}>{"<"}</div>
+                            <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{"<<"}</div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
                                 <div class="inner">{score1.toFixed(2)}</div>
@@ -199,7 +199,7 @@ class Lineups extends React.Component {
                                 <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
                                 <div class="inner">{score2.toFixed(2)}</div>
                             </div>
-                            <div style={{margin: "auto"}} onClick={this.handleClick}>{">"}</div>
+                            <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{">>"}</div>
                         </div>
                         <div style={{width: "10%", margin: "auto" }}>
                                 <img src={img} alt="" style={{width: "100%", height: "auto", paddingRight: "4vw"}} />
