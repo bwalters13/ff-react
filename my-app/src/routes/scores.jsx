@@ -5,6 +5,7 @@ import "../App.css"
 import Navbar from "../navbar"
 import right from '../righton.png';
 import left from '../lefton.png';
+import cat from "../cat.gif"
 
 const playoffTeams = [4,9,12,14]
 
@@ -144,7 +145,7 @@ class Lineups extends React.Component {
       render () {
           let lineup1, lineup2, img
           if (this.state.isLoading) {
-              return <h1>Loading...</h1>
+              return <img src={cat} alt="" style={{width: "100%"}} />
           }
           if (this.state.index == 0) {
               lineup1 = this.state.lineup1
@@ -224,14 +225,6 @@ class Lineups extends React.Component {
                             {fullMatchup}
                         </tbody>
                     </table>
-                    <Navbar
-                    onTouchStart={e=> this.touchY = e.nativeEvent.pageY}
-                    onTouchEnd={e => {
-                        if (this.touchY - e.nativeEvent.pageY > 20)
-                        alert("WORKS")
-                    }}
-                    style={{height: 300, backgroundColor: '#ccc'}}
-                    />
             </div>
           )
       }
