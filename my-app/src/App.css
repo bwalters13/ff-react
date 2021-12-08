@@ -13,6 +13,7 @@
 }
 
 .App {
+    font-family: Futura;
     background-color: #282c34;
     display: flex;
     flex-direction: column;
@@ -61,10 +62,6 @@ td {
 
 .lineup tr {
     height: 8vh;
-}
-
-.lineup tr nth-child(even) {
-    background-color: darkgray;
 }
 
 .lineup tr:nth-child(odd) {
