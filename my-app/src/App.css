@@ -111,9 +111,16 @@ caption {
     width: 50%;
 }
 
-.inner {}
+.top {
+    height: 20vh;
+    width: 100%;
+    background-color: rgb(246, 147, 255);
+}
 
 @media (max-width: 900px) {
+    .top {
+        height: 5vh;
+    }
     .inner {
         width: 100%;
         text-align: center;
@@ -133,7 +140,12 @@ caption {
 
 img {
     height: 100%;
+    width: auto;
     float: left;
+}
+
+.top img {
+    float: none;
 }
 
 table {

@@ -5,6 +5,10 @@ import living from './liv.jpg'
 
 function Navbar() {
   return (
+    <div style={{width: "100%"}}>
+      <div class="top">
+        <img src={living} alt="" />
+      </div>
     <div class="navbar">  
       {/* <img src={living} alt="" /> */}
       <li>
@@ -13,6 +17,7 @@ function Navbar() {
       <li>
         <Link to="/scores">Matchups</Link>
       </li>
+    </div>
     </div>
   )
 }

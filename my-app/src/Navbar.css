@@ -13,6 +13,12 @@
     height: 10vh;
 }
 
+@media(max-width: 900px) {
+    .navbar {
+        height: 5vh;
+    }
+}
+
 .navbar li {
     list-style: none;
     display: inline-block;
@@ -21,7 +27,7 @@
 
 .navbar li a {
     text-decoration: none;
-    color: rgb(29, 25, 231);
+    color: black;
     font-size: x-large;
     padding: 8px 20px;
 }
