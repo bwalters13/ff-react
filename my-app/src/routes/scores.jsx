@@ -166,7 +166,7 @@ class Lineups extends React.Component {
             <div class="tables">
                     <table class="lineup" onTouchStart={e=> this.touchY = e.nativeEvent.pageY}
                     onTouchEnd={e => {
-                        if (this.touchX - e.nativeEvent.pageX > 20)
+                        if (this.touchX - e.nativeEvent.pageX > 10)
                           this.handleClick()
                       }}>
                         <div class="total">
