@@ -56,7 +56,7 @@ class Lineups extends React.Component {
           }
           var xUp = e.touches[0].clientX;
           var xDiff = this.state.xDown - xUp
-          if (Math.abs(xDiff) > 0) {
+          if (Math.abs(xDiff) > 2) {
               this.setState({index: (this.state.index+1)%matchups.length})
           }
 
