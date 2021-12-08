@@ -30,14 +30,37 @@ class Expenses extends React.Component {
 class Lineups extends React.Component {
       constructor () {
           super()
-          this.state = {lineup1: {}, lineup2: {}, lineup3: {}, lineup4: {}, rosters: {}, isLoading: true, index: 0}
+          this.state = {lineup1: {}, lineup2: {}, lineup3: {}, lineup4: {}, rosters: {}, isLoading: true, index: 0, xDown: null}
           this.handleClick = this.handleClick.bind(this);
-          
+          this.handleTouchMove = this.handleTouchMove.bind(this)
+          this.handleTouchStart = this.handleTouchStart.bind(this)
       }
 
       handleClick() {
         this.setState({index: (this.state.index+1)% matchups.length}) 
         console.log(this.state.index)
+      }
+      getTouches(evt) {
+        return evt.touches ||             // browser API
+               evt.originalEvent.touches; // jQuery
+      } 
+
+      handleTouchStart(e) {
+        const firstTouch = this.getTouches(e)[0]
+        this.setState({xDown: firstTouch.clientX})
+      }
+
+      handleTouchMove(e) {
+          if (!this.state.xDown) {
+              return
+          }
+          var xUp = e.touches[0].clientX;
+          var xDiff = this.state.xDown - xUp
+          if (Math.abs(xDiff) > 0) {
+              this.setState({index: (this.state.index+1)%matchups.length})
+          }
+
+          this.setState({xDown: null})
       }
 
       calcProjected = (playerObj) => {
@@ -164,11 +187,7 @@ class Lineups extends React.Component {
           return (
             
             <div class="tables">
-                    <table class="lineup" onTouchStart={e=> this.touchY = e.nativeEvent.pageY}
-                    onTouchEnd={e => {
-                        if (this.touchX - e.nativeEvent.pageX > 10)
-                          this.handleClick()
-                      }}>
+                    <table class="lineup" onTouchStart={this.handleTouchStart} onTouchMove={this.handleTouchMove}>
                         <div class="total">
 
                             <div class="score">
