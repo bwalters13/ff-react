@@ -4,6 +4,7 @@ import Boxscore from './Boxscore.jsx';
 import React from 'react';
 import { Link } from "react-router-dom";
 import Navbar from './navbar.jsx'
+import cat from "./cat.gif"
 
 
 
@@ -94,7 +95,7 @@ class App extends React.Component {
   render () {
     if (Object.keys(this.state.scores).length == 0) {
       console.log(this.state.scores)
-      return null;
+      return <img src={cat} alt="" />;
     }
     return (
       <div className="App">
