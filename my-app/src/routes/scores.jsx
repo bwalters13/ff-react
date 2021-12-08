@@ -53,7 +53,7 @@ class Lineups extends React.Component {
 
       getBoxscores = async () => {
         let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2021});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 13, matchupPeriodId: 13, seasonId: 2021});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2021});
 
         for (let i = 0; i < boxes13.length; i++) {
             if (playoffTeams.includes(boxes13[i].homeTeamId)) {
