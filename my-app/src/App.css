@@ -157,7 +157,7 @@ td {
 }
 
 .boxscore td:first-child {
-    padding-right: 30%;
+    padding-right: 10%;
     width: 50vw;
 }
 
@@ -186,6 +186,12 @@ td {
 .teamName {
     text-align: left;
     min-width: 50vw;
+}
+
+@media (max-width: 900px) {
+    .teamName {
+        min-width: 55vw;
+    }
 }
 
 .row {
