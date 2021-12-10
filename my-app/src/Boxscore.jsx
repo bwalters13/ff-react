@@ -25,7 +25,7 @@ class Boxscore extends React.Component {
             console.log(props.scores)
             return {
                 boxscores: Object.keys(props.scores).map((b) =>
-                    <tr class="box"><td className="teamName">{teams[b]}</td> <td> {(props.scores[b][13] + props.scores[b][12]).toFixed(2)}</td> <td>{props.scores[b][12]}</td> <td>{props.scores[b][13]}</td></tr>
+                    <tr class="box"><td className="teamName">{teams[b]}</td> <td> {(props.scores[b][13] + props.scores[b][12]).toFixed(2)}</td> <td>{(props.scores[b][12]).toFixed(2)}</td> <td>{(props.scores[b][13]).toFixed(2)}</td></tr>
               
                 )
             }
