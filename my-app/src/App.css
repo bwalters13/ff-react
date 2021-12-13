@@ -162,7 +162,7 @@ td {
 }
 
 .boxscore {
-    width: 90vw;
+    width: 80vw;
     border-radius: 20px;
     background-color: lightslategray;
 }
@@ -190,7 +190,7 @@ td {
 
 @media (max-width: 900px) {
     .teamName {
-        min-width: 55vw;
+        min-width: 50vw;
     }
 }
 
