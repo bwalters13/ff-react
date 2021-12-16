@@ -46,7 +46,6 @@ class Lineups extends React.Component {
 
       handleClick() {
         this.setState({index: (this.state.index+1)% matchups.length}) 
-        console.log(this.state.index)
       }
       getTouches(evt) {
         return evt.touches ||             // browser API
@@ -109,8 +108,6 @@ class Lineups extends React.Component {
             for (let k = 0; k < playoffTeams.length; k++) {
                 let teamId = playoffTeams[k]
                 let teamRoster = state.rosters[teamId]
-                console.log(teamRoster)
-                console.log(teamId)
                 teamStarters[teamId] = []
                 for (let i = 0; i < positions.length; i++) {
                     let j = 0
@@ -146,7 +143,6 @@ class Lineups extends React.Component {
 
       componentDidMount () {
           this.getBoxscores();
-          console.log("UPDATED ")
       }
 
       render () {

@@ -80,22 +80,18 @@ class App extends React.Component {
           13: 0
         }
       }
-      console.log(scores)
     }
     this.setState({scores: scores})
-    console.log(scores)
     
         
   }
 
   componentDidMount () {
     this.getBoxscores()
-    console.log('UPDATED')
   }
 
   render () {
     if (Object.keys(this.state.scores).length == 0) {
-      console.log(this.state.scores)
       return (
         <div className="App">
         <Navbar/> 

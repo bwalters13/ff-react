@@ -22,7 +22,6 @@ class Boxscore extends React.Component {
     }
     componentDidMount () {
         this.setState(function(state, props) {
-            console.log(props.scores)
             return {
                 boxscores: Object.keys(props.scores).map((b) =>
                     <tr class="box"><td className="teamName">{teams[b]}</td> <td> {(props.scores[b][13] + props.scores[b][12]).toFixed(2)}</td> <td>{(props.scores[b][12]).toFixed(2)}</td> <td>{(props.scores[b][13]).toFixed(2)}</td></tr>
@@ -32,7 +31,6 @@ class Boxscore extends React.Component {
         })
     }
     render() {
-        console.log(this.state.boxscores)
         return (
             <div style={{height: "100vh"}}>
                 <table class="boxscore">
