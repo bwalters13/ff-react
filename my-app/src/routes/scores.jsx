@@ -14,6 +14,13 @@ const matchups = [
     [12, 14]
 ]
 
+const last = {
+    4: 122.88,
+    9: 182.52,
+    12: 172.52,
+    14: 156.18
+}
+
 class Expenses extends React.Component {
    render() {
         
@@ -79,7 +86,7 @@ class Lineups extends React.Component {
 
       getBoxscores = async () => {
         let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2021});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2021});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 15, matchupPeriodId: 14, seasonId: 2021});
 
         for (let i = 0; i < boxes13.length; i++) {
             if (playoffTeams.includes(boxes13[i].homeTeamId)) {
@@ -193,11 +200,11 @@ class Lineups extends React.Component {
                             <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{"<<"}</div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
-                                <div class="inner">{score1.toFixed(2)}</div>
+                                <div class="inner">{(score1 + last[matchups[this.state.index][0]]).toFixed(2)}</div>
                             </div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
-                                <div class="inner">{score2.toFixed(2)}</div>
+                                <div class="inner">{(score2 + last[matchups[this.state.index][1]]).toFixed(2)}</div>
                             </div>
                             <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{">>"}</div>
                         </div>
@@ -213,11 +220,11 @@ class Lineups extends React.Component {
 
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
-                                <div class="inner">{score1.toFixed(2)}</div>
+                                <div class="inner">{(score1 + last[matchups[this.state.index][0]]).toFixed(2)}</div>
                             </div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
-                                <div class="inner">{score2.toFixed(2)}</div>
+                                <div class="inner">{(score2 + last[matchups[this.state.index][1]]).toFixed(2)}</div>
                             </div>
                         </div>
                 
