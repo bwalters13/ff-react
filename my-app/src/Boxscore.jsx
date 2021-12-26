@@ -41,17 +41,17 @@ class Boxscore extends React.Component {
                         <th>Week 15</th>
                     </tr>
                        {this.state.boxscores[0]}
-                        {this.state.boxscores[1]}
+                        {this.state.boxscores[2]}
                 </table>
                 <br />
                 <table className="boxscore">
                     <tr className="boxheader">
                         <th></th>
                         <th>Score</th>
-                        <th>Week 14</th>
-                        <th>Week 15</th>
+                        <th>Week 16</th>
+                        <th>Week 17</th>
                     </tr>
-                        {this.state.boxscores[2]}
+                        {this.state.boxscores[1]}
                         {this.state.boxscores[3]}
     
                 </table>

@@ -7,12 +7,16 @@ import right from '../righton.png';
 import left from '../lefton.png';
 import cat from "../cat.gif"
 
-const playoffTeams = [4,9,12,14]
-
+const playoffTeams = [14,9,12,4]
+const champ = [14, 9]
 const matchups = [
-    [4,9], 
-    [12, 14]
+    [14 ,9], 
+    [12, 4]
 ]
+let manual_lineups = {
+    4: ["Jalen Hurts", "Devonta Freeman", "Josh Jacobs", "Deebo Samuel", "Michael Gallup", "Jared Cook", "Emmanuel Sanders", "Jamison Crowder", "Seahawks D/ST", "Tyler Bass"],
+    12: ["Josh Allen", "Alvin Kamara", "Justin Jackson", "Justin Jefferson", "Amari Cooper", "George Kittle", "Van Jefferson", "Christian Kirk", "Dolphins D/ST", "Randy Bullock"]
+  }
 
 const last = {
     4: 122.88,
@@ -84,8 +88,8 @@ class Lineups extends React.Component {
       }
 
       getBoxscores = async () => {
-        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2021});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 15, matchupPeriodId: 14, seasonId: 2021});
+        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
 
         for (let i = 0; i < boxes13.length; i++) {
             if (playoffTeams.includes(boxes13[i].homeTeamId)) {
@@ -109,26 +113,38 @@ class Lineups extends React.Component {
                 let teamId = playoffTeams[k]
                 let teamRoster = state.rosters[teamId]
                 teamStarters[teamId] = []
-                for (let i = 0; i < positions.length; i++) {
-                    let j = 0
-                    try {
-                        while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
-                            j++;
+                if (champ.includes(teamId)) {
+                    for (let i = 0; i < positions.length; i++) {
+                        let j = 0
+                        try {
+                            while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
+                                j++;
+                            }
+                            teamStarters[teamId].push(teamRoster[j])
+                            console.log(teamRoster[j])
+                            teamRoster.splice(j, 1)
+                        } catch (error) {
+                            var nullObj = {
+                                "player": {"fullName": ""},
+                                "position": "",
+                                "totalPoints": 0,
+                                "projectedPointBreakdown": 0
+
+                            }
+                            teamStarters[teamId].push(nullObj)
+                        }
+                        
+                    }
+                }
+                else {
+                    for (let i = 0; i < manual_lineups[teamId].length; i++) {
+                        let j = 0
+                        while (teamRoster[j].player.fullName != manual_lineups[teamId][i]) {
+                            j++
                         }
                         teamStarters[teamId].push(teamRoster[j])
-                        console.log(teamRoster[j])
                         teamRoster.splice(j, 1)
-                    } catch (error) {
-                        var nullObj = {
-                            "player": {"fullName": ""},
-                            "position": "",
-                            "totalPoints": 0,
-                            "projectedPointBreakdown": 0
-
-                        }
-                        teamStarters[teamId].push(nullObj)
                     }
-                    
                 }
             }
             return { 
@@ -196,11 +212,11 @@ class Lineups extends React.Component {
                             <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{"<<"}</div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
-                                <div class="inner">{(score1 + last[matchups[this.state.index][0]]).toFixed(2)}</div>
+                                <div class="inner">{(score1).toFixed(2)}</div>
                             </div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
-                                <div class="inner">{(score2 + last[matchups[this.state.index][1]]).toFixed(2)}</div>
+                                <div class="inner">{(score2).toFixed(2)}</div>
                             </div>
                             <div style={{margin: "auto", color: "lightpink"}} onClick={this.handleClick}>{">>"}</div>
                         </div>
@@ -216,11 +232,11 @@ class Lineups extends React.Component {
 
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][0]]}</b></div>
-                                <div class="inner">{(score1 + last[matchups[this.state.index][0]]).toFixed(2)}</div>
+                                <div class="inner">{(score1).toFixed(2)}</div>
                             </div>
                             <div class="score">
                                 <div class="inner"><b>{teams[matchups[this.state.index][1]]}</b></div>
-                                <div class="inner">{(score2 + last[matchups[this.state.index][1]]).toFixed(2)}</div>
+                                <div class="inner">{(score2).toFixed(2)}</div>
                             </div>
                         </div>
                 
