@@ -18,7 +18,7 @@ const teams = {
    6: "Will Lutz n sum BIG BOOTY SLUTZ",
    7: "JOEVID - 19", 
    8: "Wheelchair Helaire",
-   9: "Little Red FOURNETTE",
+   9: "Elliott Page bulC snarT",
    10: "Football is Gay",
    12: "Bend Her Over a Darrell",
    13: "Team Jafarinia",
