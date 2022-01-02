@@ -89,7 +89,7 @@ class Lineups extends React.Component {
 
       getBoxscores = async () => {
         let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2021});
 
         for (let i = 0; i < boxes13.length; i++) {
             if (playoffTeams.includes(boxes13[i].homeTeamId)) {
@@ -113,39 +113,29 @@ class Lineups extends React.Component {
                 let teamId = playoffTeams[k]
                 let teamRoster = state.rosters[teamId]
                 teamStarters[teamId] = []
-                if (champ.includes(teamId)) {
-                    for (let i = 0; i < positions.length; i++) {
-                        let j = 0
-                        try {
-                            while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
-                                j++;
-                            }
-                            teamStarters[teamId].push(teamRoster[j])
-                            console.log(teamRoster[j])
-                            teamRoster.splice(j, 1)
-                        } catch (error) {
-                            var nullObj = {
-                                "player": {"fullName": ""},
-                                "position": "",
-                                "totalPoints": 0,
-                                "projectedPointBreakdown": 0
-
-                            }
-                            teamStarters[teamId].push(nullObj)
-                        }
-                        
-                    }
-                }
-                else {
-                    for (let i = 0; i < manual_lineups[teamId].length; i++) {
-                        let j = 0
-                        while (teamRoster[j].player.fullName != manual_lineups[teamId][i]) {
-                            j++
+                for (let i = 0; i < positions.length; i++) {
+                    let j = 0
+                    try {
+                        while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
+                            j++;
                         }
                         teamStarters[teamId].push(teamRoster[j])
+                        console.log(teamRoster[j])
                         teamRoster.splice(j, 1)
+                    } catch (error) {
+                        var nullObj = {
+                            "player": {"fullName": ""},
+                            "position": "",
+                            "totalPoints": 0,
+                            "projectedPointBreakdown": 0
+
+                        }
+                        teamStarters[teamId].push(nullObj)
                     }
+                    
                 }
+                
+                
             }
             return { 
               lineup1: teamStarters[playoffTeams[0]],

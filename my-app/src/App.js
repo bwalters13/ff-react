@@ -48,7 +48,7 @@ class App extends React.Component {
   getBoxscores = async () => {
     let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
     console.log(boxes12)
-    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 16, seasonId: 2021});
+    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2021});
     console.log(boxes13)
     var scores = {};
     for (let i = 0; i < boxes12.length; i++) {
