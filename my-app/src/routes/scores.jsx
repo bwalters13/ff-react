@@ -7,11 +7,11 @@ import right from '../righton.png';
 import left from '../lefton.png';
 import cat from "../cat.gif"
 
-const playoffTeams = [14,9,12,4]
+const playoffTeams = [2, 9, 13, 14]
 const champ = [14, 9]
 const matchups = [
-    [14 ,9], 
-    [12, 4]
+    [2 ,13], 
+    [9, 14]
 ]
 let manual_lineups = {
     4: ["Jalen Hurts", "Devonta Freeman", "Josh Jacobs", "Deebo Samuel", "Michael Gallup", "Jared Cook", "Emmanuel Sanders", "Jamison Crowder", "Seahawks D/ST", "Tyler Bass"],
@@ -88,20 +88,20 @@ class Lineups extends React.Component {
       }
 
       getBoxscores = async () => {
-        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2021});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2021});
+        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2022});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 15, matchupPeriodId: 14, seasonId: 2022});
 
-        for (let i = 0; i < boxes13.length; i++) {
-            if (playoffTeams.includes(boxes13[i].homeTeamId)) {
-                let teamId = boxes13[i].homeTeamId
+        for (let i = 0; i < boxes12.length; i++) {
+            if (playoffTeams.includes(boxes12[i].homeTeamId)) {
+                let teamId = boxes12[i].homeTeamId
                 let rosters = this.state.rosters
-                rosters[teamId] = boxes13[i].homeRoster
+                rosters[teamId] = boxes12[i].homeRoster
                 this.setState(rosters)
             }
-            if (playoffTeams.includes(boxes13[i].awayTeamId)) {
-                let teamId = boxes13[i].awayTeamId
+            if (playoffTeams.includes(boxes12[i].awayTeamId)) {
+                let teamId = boxes12[i].awayTeamId
                 let rosters = this.state.rosters
-                rosters[teamId] = boxes13[i].awayRoster
+                rosters[teamId] = boxes12[i].awayRoster
                 this.setState(rosters)
             }
         }
@@ -139,8 +139,8 @@ class Lineups extends React.Component {
             }
             return { 
               lineup1: teamStarters[playoffTeams[0]],
-              lineup2: teamStarters[playoffTeams[1]],
-              lineup3: teamStarters[playoffTeams[2]],
+              lineup2: teamStarters[playoffTeams[2]],
+              lineup3: teamStarters[playoffTeams[1]],
               lineup4: teamStarters[playoffTeams[3]]
             }
         })

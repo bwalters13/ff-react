@@ -1,19 +1,19 @@
 import React from 'react';
 
 const teams = {
-   1: "Loading ....", 
-   2: "Adrian Beaturson",
-   3: "Waddle Baby Waddle Baby",
-   4: "Whale Sharks",
-   6: "Will Lutz n sum BIG BOOTY SLUTZ",
-   7: "JOEVID - 19", 
-   8: "Wheelchair Helaire",
-   9: "Elliott Page bulC snarT",
-   10: "Football is Gay",
-   12: "Bend Her Over a Darrell",
-   13: "Team Jafarinia",
-   14: "Silence of The Lamb",
-}
+    1: "Loading ....", 
+    2: "Diggs Duck Dip Dive and Diggs",
+    3: "Waddle Baby Waddle Baby",
+    4: "Whale Sharks",
+    6: "Will Lutz n sum BIG BOOTY SLUTZ",
+    7: "JOEVID - 19", 
+    8: "Wheelchair Helaire",
+    9: "You want a Pierce of me??",
+    10: "Football is Gay",
+    12: "Bend Her Over a Darrell",
+    13: "Team Jafarinia",
+    14: "Silence of The Lamb",
+ }
 
 class Boxscore extends React.Component {
     constructor(){
@@ -37,22 +37,22 @@ class Boxscore extends React.Component {
                 <tr className="boxheader">
                         <th></th>
                         <th>Score</th>
-                        <th>Week 16</th>
-                        <th>Week 17</th>
+                        <th>Week 14</th>
+                        <th>Week 15</th>
                     </tr>
-                       {this.state.boxscores[1]}
-                        {this.state.boxscores[3]}
+                       {this.state.boxscores[2]}
+                        {this.state.boxscores[0]}
                 </table>
                 <br />
                 <table className="boxscore">
                     <tr className="boxheader">
                         <th></th>
                         <th>Score</th>
-                        <th>Week 16</th>
-                        <th>Week 17</th>
+                        <th>Week 14</th>
+                        <th>Week 15</th>
                     </tr>
-                        {this.state.boxscores[0]}
-                        {this.state.boxscores[2]}
+                        {this.state.boxscores[1]}
+                        {this.state.boxscores[3]}
     
                 </table>
             </div>
