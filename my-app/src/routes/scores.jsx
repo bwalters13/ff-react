@@ -14,8 +14,8 @@ const matchups = [
     [13, 14]
 ]
 let manual_lineups = {
-    9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Johnson", "Buccaneers D/ST", "Daniel Carlson"],
-    2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
+    9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Terry McLaurin", "Evan Engram", "Dallas Goedert", "Diontae Johnson", "Browns D/ST", "Daniel Carlson"],
+    2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Cam Akers", "Cardinals D/ST", "Jason Myers"]
   }
 
 const last = {
