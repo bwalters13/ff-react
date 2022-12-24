@@ -8,14 +8,14 @@ import left from '../lefton.png';
 import cat from "../cat.gif"
 
 const playoffTeams = [2, 9, 13, 14]
-const champ = [14, 9]
+const champ = [13, 14]
 const matchups = [
-    [2 ,13], 
-    [9, 14]
+    [2 ,9], 
+    [13, 14]
 ]
 let manual_lineups = {
-    4: ["Jalen Hurts", "Devonta Freeman", "Josh Jacobs", "Deebo Samuel", "Michael Gallup", "Jared Cook", "Emmanuel Sanders", "Jamison Crowder", "Seahawks D/ST", "Tyler Bass"],
-    12: ["Josh Allen", "Alvin Kamara", "Justin Jackson", "Justin Jefferson", "Amari Cooper", "George Kittle", "Van Jefferson", "Christian Kirk", "Dolphins D/ST", "Randy Bullock"]
+    9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Johnson", "Buccaneers D/ST", "Daniel Carlson"],
+    2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
   }
 
 const last = {
@@ -88,8 +88,8 @@ class Lineups extends React.Component {
       }
 
       getBoxscores = async () => {
-        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2022});
-        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 15, matchupPeriodId: 14, seasonId: 2022});
+        let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2022});
+        let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2022});
 
         for (let i = 0; i < boxes12.length; i++) {
             if (playoffTeams.includes(boxes12[i].homeTeamId)) {
@@ -113,16 +113,45 @@ class Lineups extends React.Component {
                 let teamId = playoffTeams[k]
                 let teamRoster = state.rosters[teamId]
                 teamStarters[teamId] = []
-                for (let i = 0; i < positions.length; i++) {
-                    let j = 0
-                    try {
-                        while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
-                            j++;
+                if(champ.includes(teamId)) {
+                    for (let i = 0; i < positions.length; i++) {
+                        let j = 0
+                        try {
+                            while (teamRoster[j].position != positions[i] & j < teamRoster.length) {
+                                j++;
+                            }
+                            teamStarters[teamId].push(teamRoster[j])
+                            teamRoster.splice(j, 1)
+                        } catch (error) {
+                            var nullObj = {
+                                "player": {"fullName": ""},
+                                "position": "",
+                                "totalPoints": 0,
+                                "projectedPointBreakdown": 0
+
+                            }
+                            teamStarters[teamId].push(nullObj)
                         }
-                        teamStarters[teamId].push(teamRoster[j])
-                        console.log(teamRoster[j])
-                        teamRoster.splice(j, 1)
-                    } catch (error) {
+                        
+                    }
+                }
+                else {
+                    try { 
+                        for (let i = 0; i < manual_lineups[teamId].length; i++) {
+                            console.log(teamRoster)
+                            console.log(manual_lineups[teamId][i])
+                            let j = 0
+                            while (teamRoster[j].player.fullName != manual_lineups[teamId][i]) {
+                                console.log(j)
+                                j++
+                            }
+                            console.log("FOUND", teamRoster[j].player.fullName)
+                            teamStarters[teamId].push(teamRoster[j])
+                            teamRoster.splice(j, 1)
+                            console.log(teamRoster)
+                        }
+                    }
+                    catch (error) {
                         var nullObj = {
                             "player": {"fullName": ""},
                             "position": "",
@@ -132,15 +161,16 @@ class Lineups extends React.Component {
                         }
                         teamStarters[teamId].push(nullObj)
                     }
-                    
+
                 }
                 
                 
             }
+            console.log(teamStarters)
             return { 
               lineup1: teamStarters[playoffTeams[0]],
-              lineup2: teamStarters[playoffTeams[2]],
-              lineup3: teamStarters[playoffTeams[1]],
+              lineup2: teamStarters[playoffTeams[1]],
+              lineup3: teamStarters[playoffTeams[2]],
               lineup4: teamStarters[playoffTeams[3]]
             }
         })

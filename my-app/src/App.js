@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Navbar from './navbar.jsx'
 import cat from "./cat.gif"
 
-const champ = [9, 14]
-const third = [4, 12]
+const champ = [13, 14]
+const third = [9, 2]
 
 
 const teams = {
@@ -26,17 +26,17 @@ const teams = {
 }
 
 const manual_lineups = {
-  4: ["Jalen Hurts", "Devonta Freeman", "Josh Jacobs", "Deebo Samuel", "Michael Gallup", "Jared Cook", "Emmanuel Sanders", "Jamison Crowder", "Seahawks D/ST", "Tyler Bass"],
-  12: ["Josh Allen", "Alvin Kamara", "Justin Jackson", "Justin Jefferson", "Amari Cooper", "George Kittle", "Van Jefferson", "Christian Kirk", "Dolphins D/ST", "Randy Bullock"]
+  9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Jonson", "Buccaneers D/ST", "Daniel Carlson"],
+  2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
 }
 
 const playoffTeams = [2, 9, 13, 14]
 
 const last_week = {
-  2: 124.76,
-  9: 138.04,
-  13: 149.48,
-  14: 151.7
+  2: 111.98,
+  9: 123.44,
+  13: 141.8,
+  14: 187.6
 }
 
 
@@ -48,50 +48,48 @@ class App extends React.Component {
   }
 
   getBoxscores = async () => {
-    let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 14, matchupPeriodId: 13, seasonId: 2022});
+    let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2022});
     console.log(boxes12)
-    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 15, matchupPeriodId: 14, seasonId: 2022});
+    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2022});
     console.log(boxes13)
     var scores = {};
     for (let i = 0; i < boxes12.length; i++) {
       console.log(third.includes(boxes12[i].homeTeamId))
       console.log(playoffTeams.includes(boxes12[i].homeTeamId))
-      if (playoffTeams.includes(boxes12[i].homeTeamId)) {
+      if (playoffTeams.includes(boxes12[i].homeTeamId) && champ.includes(boxes12[i].homeTeamId)) {
         console.log(boxes12[i].homeRoster)
         scores[boxes12[i].homeTeamId] = {12: boxes12[i].homeScore - last_week[boxes12[i].homeTeamId]}
       }
-      // if (playoffTeams.includes(boxes12[i].homeTeamId) && third.includes(boxes12[i].homeTeamId)) {
-      //   console.log("IM IN")
-      //   let teamId = boxes12[i].homeTeamId
-      //   let score = 0
-      //   for (let k = 0; k < boxes12[i].homeRoster.length; k++) {
-      //     console.log(boxes12[i].homeRoster[k].player.fullName)
-      //     if (manual_lineups[teamId].includes(boxes12[i].homeRoster[k].player.fullName)) {
-      //       score += boxes12[i].homeRoster[k].totalPoints
-      //       console.log("AAYYEE")
-      //       console.log(boxes12[i].homeRoster[k].player.fullName)
-      //     }
-      //   }
-      //   scores[boxes12[i].homeTeamId] = {12: score}
-
-
-      // }
-      if (playoffTeams.includes(boxes12[i].awayTeamId)) {
+      if (playoffTeams.includes(boxes12[i].homeTeamId) && third.includes(boxes12[i].homeTeamId)) {
+        console.log("IM IN")
+        let teamId = boxes12[i].homeTeamId
+        let score = 0
+        for (let k = 0; k < boxes12[i].homeRoster.length; k++) {
+          console.log(boxes12[i].homeRoster[k].player.fullName)
+          if (manual_lineups[teamId].includes(boxes12[i].homeRoster[k].player.fullName)) {
+            score += boxes12[i].homeRoster[k].totalPoints
+            console.log("AAYYEE")
+            console.log(boxes12[i].homeRoster[k].player.fullName)
+          }
+        }
+        scores[boxes12[i].homeTeamId] = {12: score}
+      }
+      if (playoffTeams.includes(boxes12[i].awayTeamId) && champ.includes(boxes12[i].awayTeamId)) {
         scores[boxes12[i].awayTeamId] = {12: boxes12[i].awayScore - last_week[boxes12[i].awayTeamId]}
       }
-      // if (playoffTeams.includes(boxes12[i].awayTeamId) & third.includes(boxes12[i].awayTeamId)) {
-      //   let teamId = boxes12[i].awayTeamId
-      //   let score = 0
-      //   for (let k = 0; k < boxes12[i].awayRoster.length; k++) {
-      //     console.log(boxes12[i].awayRoster[k].player.fullName)
-      //     if (manual_lineups[teamId].includes(boxes12[i].awayRoster[k].player.fullName)) {
-      //       score += boxes12[i].awayRoster[k].totalPoints
-      //       console.log("AAYYEE")
-      //       console.log(boxes12[i].awayRoster[k].player.fullName)
-      //     }
-      //   }
-      //   scores[boxes12[i].awayTeamId] = {12: score}
-      // }
+      if (playoffTeams.includes(boxes12[i].awayTeamId) & third.includes(boxes12[i].awayTeamId)) {
+        let teamId = boxes12[i].awayTeamId
+        let score = 0
+        for (let k = 0; k < boxes12[i].awayRoster.length; k++) {
+          console.log(boxes12[i].awayRoster[k].player.fullName)
+          if (manual_lineups[teamId].includes(boxes12[i].awayRoster[k].player.fullName)) {
+            score += boxes12[i].awayRoster[k].totalPoints
+            console.log("AAYYEE")
+            console.log(boxes12[i].awayRoster[k].player.fullName)
+          }
+        }
+        scores[boxes12[i].awayTeamId] = {12: score}
+      }
     }
     if (boxes13.length != 0) {
       for (let i = 0; i < boxes13.length; i++) {
@@ -120,7 +118,7 @@ class App extends React.Component {
     }
     this.setState({scores: scores})
     
-        
+    
   }
 
   componentDidMount () {
