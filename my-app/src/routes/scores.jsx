@@ -7,22 +7,20 @@ import right from '../righton.png';
 import left from '../lefton.png';
 import cat from "../cat.gif"
 
-const playoffTeams = [2, 9, 13, 14]
-const champ = [13, 14]
+const playoffTeams = [6, 8]
+const champ = []
 const matchups = [
-    [2 ,9], 
-    [13, 14]
+    [6, 8], 
+    [6, 8]
 ]
 let manual_lineups = {
-    9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Terry McLaurin", "Evan Engram", "Dallas Goedert", "Diontae Johnson", "Browns D/ST", "Daniel Carlson"],
-    2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Cam Akers", "Cardinals D/ST", "Jason Myers"]
+    6: ["Josh Allen", "Austin Ekeler", "Marquise Brown", "Travis Kelce", "Nick Chubb"],
+    2: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews"]
   }
 
 const last = {
-    4: 122.88,
-    9: 182.52,
-    12: 172.52,
-    14: 156.18
+    6: 0,
+    8: 0,
 }
 
 class Expenses extends React.Component {
@@ -138,18 +136,21 @@ class Lineups extends React.Component {
                 else {
                     try { 
                         for (let i = 0; i < manual_lineups[teamId].length; i++) {
-                            console.log(teamRoster)
-                            console.log(manual_lineups[teamId][i])
-                            let j = 0
-                            while (teamRoster[j].player.fullName != manual_lineups[teamId][i]) {
-                                console.log(j)
-                                j++
-                            }
-                            console.log("FOUND", teamRoster[j].player.fullName)
-                            teamStarters[teamId].push(teamRoster[j])
-                            teamRoster.splice(j, 1)
-                            console.log(teamRoster)
+                            for (let k in teams ) {
+                                teamRoster = state.rosters[k]
+                                console.log(teamRoster)
+                                console.log(manual_lineups[teamId][i])
+                                let j = 0
+                                while (teamRoster[j].player.fullName != manual_lineups[teamId][i]) {
+                                    console.log(j)
+                                    j++
+                                }
+                                console.log("FOUND", teamRoster[j].player.fullName)
+                                teamStarters[teamId].push(teamRoster[j])
+                                teamRoster.splice(j, 1)
+                                console.log(teamRoster)
                         }
+                    }
                     }
                     catch (error) {
                         var nullObj = {
