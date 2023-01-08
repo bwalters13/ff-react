@@ -27,7 +27,7 @@ const teams = {
 
 let manual_lineups = {
   6: ["Josh Allen", "Austin Ekeler", "Marquise Brown", "Travis Kelce", "Nick Chubb"],
-  8: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews"]
+  8: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews", "Pat Freiermuth"]
 }
 
 const playoffTeams = [6, 8, 6, 8]
