@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Navbar from './navbar.jsx'
 import cat from "./cat.gif"
 
-const champ = [6, 8]
-const third = [6, 8]
+const champ = [13, 14]
+const third = [9, 2]
 
 
 const teams = {
@@ -25,18 +25,24 @@ const teams = {
    14: "Silence of The Lamb",
 }
 
+<<<<<<< HEAD
 let manual_lineups = {
   6: ["Josh Allen", "Austin Ekeler", "Marquise Brown", "Travis Kelce", "Nick Chubb"],
   8: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews", "Pat Freiermuth"]
+=======
+const manual_lineups = {
+  9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Jonson", "Buccaneers D/ST", "Daniel Carlson"],
+  2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
+>>>>>>> parent of 06ae975 (undo these later)
 }
 
-const playoffTeams = [6, 8, 6, 8]
+const playoffTeams = [2, 9, 13, 14]
 
 const last_week = {
-  8: 0,
-  6: 0,
-  13: 0,
-  14: 0
+  2: 111.98,
+  9: 123.44,
+  13: 141.8,
+  14: 187.6
 }
 
 
@@ -48,50 +54,61 @@ class App extends React.Component {
   }
 
   getBoxscores = async () => {
-    let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 18, matchupPeriodId: 15, seasonId: 2022});
+    let boxes12 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 16, matchupPeriodId: 14, seasonId: 2022});
     console.log(boxes12)
-    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 18, matchupPeriodId: 15, seasonId: 2022});
+    let boxes13 = await this.props.client.getBoxscoreForWeek({scoringPeriodId: 17, matchupPeriodId: 15, seasonId: 2022});
     console.log(boxes13)
     var scores = {};
-    for (let i in manual_lineups) {
-      console.log("i is ", i)
-      let score = 0
-      for (let k = 0; k < boxes12.length; k++) {
-  
-          for (let l = 0; l < boxes12[k].awayRoster.length; l++) {
-
-            console.log(boxes12[k].awayRoster[l].player.fullName)
-            if (manual_lineups[i].includes(boxes12[k].awayRoster[l].player.fullName)) {
-              score += boxes12[k].awayRoster[l].totalPoints
-              console.log("AAYYEE")
-              console.log(boxes12[k].awayRoster[l].player.fullName)
-            }
-          }
-          for (let l = 0; l < boxes12[k].homeRoster.length; l++) {
-
-            console.log(boxes12[k].homeRoster[l].player.fullName)
-            if (manual_lineups[i].includes(boxes12[k].homeRoster[l].player.fullName)) {
-              score += boxes12[k].homeRoster[l].totalPoints
-              console.log("AAYYEE")
-              console.log(boxes12[k].homeRoster[l].player.fullName)
-            }
+    for (let i = 0; i < boxes12.length; i++) {
+      console.log(third.includes(boxes12[i].homeTeamId))
+      console.log(playoffTeams.includes(boxes12[i].homeTeamId))
+      if (playoffTeams.includes(boxes12[i].homeTeamId) && champ.includes(boxes12[i].homeTeamId)) {
+        console.log(boxes12[i].homeRoster)
+        scores[boxes12[i].homeTeamId] = {12: boxes12[i].homeScore - last_week[boxes12[i].homeTeamId]}
+      }
+      if (playoffTeams.includes(boxes12[i].homeTeamId) && third.includes(boxes12[i].homeTeamId)) {
+        console.log("IM IN")
+        let teamId = boxes12[i].homeTeamId
+        let score = 0
+        for (let k = 0; k < boxes12[i].homeRoster.length; k++) {
+          console.log(boxes12[i].homeRoster[k].player.fullName)
+          if (manual_lineups[teamId].includes(boxes12[i].homeRoster[k].player.fullName)) {
+            score += boxes12[i].homeRoster[k].totalPoints
+            console.log("AAYYEE")
+            console.log(boxes12[i].homeRoster[k].player.fullName)
           }
         }
-        scores[i] = {12: score}
+        scores[boxes12[i].homeTeamId] = {12: score}
       }
+      if (playoffTeams.includes(boxes12[i].awayTeamId) && champ.includes(boxes12[i].awayTeamId)) {
+        scores[boxes12[i].awayTeamId] = {12: boxes12[i].awayScore - last_week[boxes12[i].awayTeamId]}
+      }
+      if (playoffTeams.includes(boxes12[i].awayTeamId) & third.includes(boxes12[i].awayTeamId)) {
+        let teamId = boxes12[i].awayTeamId
+        let score = 0
+        for (let k = 0; k < boxes12[i].awayRoster.length; k++) {
+          console.log(boxes12[i].awayRoster[k].player.fullName)
+          if (manual_lineups[teamId].includes(boxes12[i].awayRoster[k].player.fullName)) {
+            score += boxes12[i].awayRoster[k].totalPoints
+            console.log("AAYYEE")
+            console.log(boxes12[i].awayRoster[k].player.fullName)
+          }
+        }
+        scores[boxes12[i].awayTeamId] = {12: score}
+      }
+    }
     if (boxes13.length != 0) {
-      boxes13 = boxes12
       for (let i = 0; i < boxes13.length; i++) {
         if (playoffTeams.includes(boxes13[i].homeTeamId)) {
           scores[boxes13[i].homeTeamId] = {
             ...scores[boxes13[i].homeTeamId],
-            13: 0
+            13: boxes13[i].homeScore
           }
         }
         if (playoffTeams.includes(boxes13[i].awayTeamId)) {
           scores[boxes13[i].awayTeamId] = {
             ...scores[boxes13[i].awayTeamId],
-            13: 0
+            13: boxes13[i].awayScore
           }
         }
       }
