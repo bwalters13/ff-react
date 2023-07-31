@@ -25,7 +25,7 @@ const teams = {
    14: "Silence of The Lamb",
 }
 
-<<<<<<< HEAD
+
 let manual_lineups = {
   6: ["Josh Allen", "Austin Ekeler", "Marquise Brown", "Travis Kelce", "Nick Chubb"],
   8: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews", "Pat Freiermuth"]
@@ -33,7 +33,7 @@ let manual_lineups = {
 const manual_lineups = {
   9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Jonson", "Buccaneers D/ST", "Daniel Carlson"],
   2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
->>>>>>> parent of 06ae975 (undo these later)
+
 }
 
 const playoffTeams = [2, 9, 13, 14]
