@@ -14,8 +14,13 @@ const matchups = [
     [6, 8]
 ]
 let manual_lineups = {
+<<<<<<< HEAD
     6: ["Josh Allen", "Austin Ekeler", "Marquise Brown", "Travis Kelce", "Nick Chubb"],
     2: ["Aaron Rodgers", "Christian McCaffrey", "CeeDee Lamb", "Mark Andrews"]
+=======
+    9: ["Geno Smith", "Nick Chubb", "Rhamondre Stevenson", "Davante Adams", "Amari Cooper", "Evan Engram", "Terry McLaurin", "Diontae Johnson", "Buccaneers D/ST", "Daniel Carlson"],
+    2: ["Justin Fields", "Travis Etienne Jr.", "Tony Pollard", "Stefon Diggs", "JuJu Smith-Schuster", "Mark Andrews", "Adam Thielen", "Zack Moss", "Cardinals D/ST", "Jason Myers"]
+>>>>>>> parent of b20e13a (update lineups)
   }
 
 const last = {
