@@ -1,0 +1,204 @@
+.App {
+    text-align: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App {
+    font-family: Futura;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.lineup {
+    min-height: 150vh;
+    display: none;
+    font-size: smaller;
+}
+
+.tables {
+    width: 120vw;
+    padding: auto;
+}
+
+.full {
+    display: inline;
+}
+
+@media (max-width: 900px) {
+    .tables {
+        display: inline;
+        max-width: 100vw;
+        min-width: 100vw;
+        max-height: 100%;
+    }
+    .lineup {
+        display: inline;
+    }
+    .full {
+        display: none;
+    }
+}
+
+.lineup th,
+td {
+    text-align: left;
+    border-bottom: solid black;
+    min-height: 20vh;
+}
+
+.lineup tr {
+    height: 8vh;
+}
+
+.lineup tr:nth-child(odd) {
+    background-color: gray;
+}
+
+.lineup td:last-child {
+    border-right: none;
+}
+
+.lineup td:nth-child(2) {
+    border-right: solid black;
+}
+
+.full td:nth-child(3) {
+    border-right: solid black;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+caption {
+    width: 100%;
+}
+
+.score {
+    flex: 1vw;
+    width: 10vw;
+}
+
+.total {
+    display: flex;
+    margin: auto;
+    width: 50%;
+}
+
+.top {
+    height: 20vh;
+    width: 100%;
+    background-color: rgb(246, 147, 255);
+}
+
+@media (max-width: 900px) {
+    .top {
+        height: 5vh;
+    }
+    .inner {
+        width: 100%;
+        text-align: center;
+        font-size: large;
+        text-shadow: black;
+    }
+    img {
+        width: auto;
+        height: 100%;
+        float: left;
+        border-radius: 20px;
+    }
+    .total {
+        width: 100%;
+    }
+}
+
+img {
+    height: 100%;
+    width: auto;
+    float: left;
+}
+
+.top img {
+    float: none;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    border-radius: 20px;
+    max-width: 100vw;
+}
+
+td {
+    padding: 2vw;
+}
+
+.boxscore td:first-child {
+    padding-right: 10%;
+    width: 50vw;
+}
+
+.boxscore {
+    width: 80vw;
+    border-radius: 20px;
+    background-color: lightslategray;
+}
+
+.boxscore tr {
+    height: 10vh;
+}
+
+.boxscore td {
+    text-align: center;
+}
+
+.boxheader {
+    font-size: smaller;
+    height: 1vh !important;
+    border-bottom: solid black;
+    text-align: center;
+    background-color: #282c34;
+}
+
+.teamName {
+    text-align: left;
+    min-width: 50vw;
+}
+
+@media (max-width: 900px) {
+    .teamName {
+        min-width: 50vw;
+    }
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 100%;
+    max-width: 100vw;
+}
